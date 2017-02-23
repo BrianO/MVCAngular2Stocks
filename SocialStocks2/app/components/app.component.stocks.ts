@@ -1,33 +1,57 @@
 import { Component } from '@angular/core';
-// import { NgControl } from '@angular/common';
 import { stock } from './stock';
+import { quote } from './quote';
 import { Observable } from 'rxjs/Observable';
 import { AppServiceStocks } from '../services/app.service.stocks';
 
 
 @Component({
-  selector: 'stocks',
-  templateUrl: './app/components/app.component.stocks.html', 
-  providers: [AppServiceStocks]
+    selector: 'stocks',
+    templateUrl: './app/components/app.component.stocks.html',
+    providers: [AppServiceStocks]
 })
-export class AppComponent  {
+export class AppComponent {
     name = 'Angular Stocks';
     stockslist: stock[];
     mode = 'Observable';
-
+    statusMessage = "";
+    newStockName = "";
+    newStockSym = "";
+    newStock = new stock();
+    
     constructor(private _appService: AppServiceStocks) {
-       // this.getStocks();
+        // this.getStocks();
     }
 
-    ngOnInit() { this.getStocks(); }
-
-    // get stockslist(): stock[] {
-    //    return this._stockslist;
-    // }
+    ngOnInit() {
+        this.newStockName = "";
+        this.getStocks();
+    }
 
     getStocks() {
         this._appService.stockslist()
             .subscribe(
             stocks => this.stockslist = stocks);
+    }
+
+    private addStockToList(s: stock) {
+        this.stockslist.push(s);
+    }
+
+    symbolChanged() {
+        this._appService
+            .stockDetail(this.newStockSym)
+            .subscribe(result => {
+                this.newStockName = result.Name;
+                this.newStock.Symbol = this.newStockSym;
+            });
+    }
+
+    addStock() {
+        this._appService
+            .add(this.newStockSym)
+            .subscribe(result => {
+                this.addStockToList(this.newStock);
+            });
     }
 }

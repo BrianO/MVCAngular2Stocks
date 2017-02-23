@@ -7,7 +7,7 @@ import { AppServiceStocks } from './services/app.service.stocks';
 import { AppComponent } from './components/app.component.stocks';
 
 @NgModule({
-    imports: [BrowserModule, HttpModule],
+    imports: [BrowserModule, HttpModule, FormsModule],
     declarations: [AppComponent],
     bootstrap: [AppComponent]
 })

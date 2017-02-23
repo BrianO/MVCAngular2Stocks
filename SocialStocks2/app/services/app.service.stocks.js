@@ -16,9 +16,44 @@ var AppServiceStocks = (function () {
     function AppServiceStocks(http) {
         this.http = http;
         this._getStocksListUrl = 'Stocks/StocksJSON';
+        this._getStockDetailUrl = "Stocks/ReadStockQuote?Id=";
+        this._getPriceUrl = "Stocks/ReadPrice/";
+        this._getNewsUrl = "http://feeds.finance.yahoo.com/rss/2.0/headline?s=";
+        this._deleteStockUrl = "Stocks/Remove";
+        this._addStockUrl = "Stocks/AddJSON";
     }
     AppServiceStocks.prototype.stockslist = function () {
         return this.http.get(this._getStocksListUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    AppServiceStocks.prototype.stockDetail = function (symbol) {
+        return this.http.get(this._getStockDetailUrl + symbol)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    AppServiceStocks.prototype.readPrice = function (symbol) {
+        return this.http.get(this._getPriceUrl + symbol)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    AppServiceStocks.prototype.readNews = function (symbol) {
+        var newsLink = this._getNewsUrl
+            + symbol
+            + "&region=US&lang=en-US";
+        var params = new http_1.URLSearchParams();
+        params.set('Link', newsLink);
+        return this.http.get("/Stocks/ReadNewsData?", { search: params })
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    AppServiceStocks.prototype.remove = function (s) {
+        return this.http.post(this._deleteStockUrl, s)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    AppServiceStocks.prototype.add = function (s) {
+        return this.http.post(this._addStockUrl, s)
             .map(this.extractData)
             .catch(this.handleError);
     };

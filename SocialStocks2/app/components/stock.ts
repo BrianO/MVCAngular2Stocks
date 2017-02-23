@@ -2,5 +2,5 @@
     Id : string;
     Symbol : string;
     Price : string;
-    Color : string;
+    Color: string;
 }
