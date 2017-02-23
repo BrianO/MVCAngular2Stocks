@@ -28,10 +28,30 @@ var AppComponent = (function () {
         this.newStockName = "";
         this.getStocks();
     };
+    AppComponent.prototype.readPrice = function () {
+        var _this = this;
+        this._appService.readPrice(this.stockslist[this.rownum].Symbol)
+            .subscribe(function (result) {
+            _this.stockslist[_this.rownum].Price = result.Price;
+            _this.stockslist[_this.rownum].Color = result.Color;
+            _this.rownum++;
+            if (_this.rownum == _this.stockslist.length) {
+                _this.rownum = 0;
+            }
+            _this.getNextQuote();
+        });
+    };
+    AppComponent.prototype.getNextQuote = function () {
+        var _this = this;
+        setTimeout(function () { _this.readPrice(); }, this.interval * 1000);
+    };
     AppComponent.prototype.getStocks = function () {
         var _this = this;
         this._appService.stockslist()
-            .subscribe(function (stocks) { return _this.stockslist = stocks; });
+            .subscribe(function (stocks) {
+            _this.stockslist = stocks;
+            _this.getNextQuote();
+        });
     };
     AppComponent.prototype.addStockToList = function (s) {
         var newListItem = new stock_1.stock();
@@ -69,7 +89,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'stocks',
-        templateUrl: './app/components/app.component.stocks.html',
+        templateUrl: './app/components/app.component.stocks2.html',
         providers: [app_service_stocks_1.AppServiceStocks]
     }),
     __metadata("design:paramtypes", [app_service_stocks_1.AppServiceStocks])

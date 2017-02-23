@@ -7,7 +7,7 @@ import { AppServiceStocks } from '../services/app.service.stocks';
 
 @Component({
     selector: 'stocks',
-    templateUrl: './app/components/app.component.stocks.html',
+    templateUrl: './app/components/app.component.stocks2.html',
     providers: [AppServiceStocks]
 })
 export class AppComponent {
@@ -20,6 +20,7 @@ export class AppComponent {
     newStock = new stock();
     rownum = 0;
     interval = 2;
+    
 
     constructor(private _appService: AppServiceStocks) {
         // this.getStocks();
@@ -30,10 +31,33 @@ export class AppComponent {
         this.getStocks();
     }
 
+
+    private readPrice() {
+        this._appService.readPrice(this.stockslist[this.rownum].Symbol)
+            .subscribe(result => {
+                this.stockslist[this.rownum].Price = result.Price;
+                this.stockslist[this.rownum].Color = result.Color;
+                this.rownum++;
+                if (this.rownum == this.stockslist.length) {
+                    this.rownum = 0;
+                }
+                this.getNextQuote();
+            });
+    }
+
+
+    private getNextQuote() {
+      setTimeout(() => { this.readPrice() }, this.interval * 1000);
+    }
+
     getStocks() {
         this._appService.stockslist()
             .subscribe(
-            stocks => this.stockslist = stocks);
+            stocks =>
+            {
+                this.stockslist = stocks;
+                this.getNextQuote();
+            });
     }
 
     private addStockToList(s: stock) {

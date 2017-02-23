@@ -11,7 +11,7 @@ export class AppServiceStocks {
 
     private _getStocksListUrl = 'Stocks/StocksJSON';
     private _getStockDetailUrl = "Stocks/ReadStockQuote?Id=";
-    private _getPriceUrl = "Stocks/ReadPrice/";
+    private _getPriceUrl = "Stocks/ReadPrice?Id=";
 
     private _getNewsUrl = "http://feeds.finance.yahoo.com/rss/2.0/headline?s=";
 
@@ -35,7 +35,7 @@ export class AppServiceStocks {
             .catch(this.handleError);
     }
     
-    readPrice(symbol: string): Observable<string> {
+    readPrice(symbol: string): Observable<stock> {
         return this.http.get(this._getPriceUrl + symbol)
             .map(this.extractData)
             .catch(this.handleError);

@@ -17,7 +17,7 @@ var AppServiceStocks = (function () {
         this.http = http;
         this._getStocksListUrl = 'Stocks/StocksJSON';
         this._getStockDetailUrl = "Stocks/ReadStockQuote?Id=";
-        this._getPriceUrl = "Stocks/ReadPrice/";
+        this._getPriceUrl = "Stocks/ReadPrice?Id=";
         this._getNewsUrl = "http://feeds.finance.yahoo.com/rss/2.0/headline?s=";
         this._deleteStockUrl = "Stocks/Remove";
         this._addStockUrl = "Stocks/AddJSON";
@@ -48,7 +48,9 @@ var AppServiceStocks = (function () {
             .catch(this.handleError);
     };
     AppServiceStocks.prototype.remove = function (s) {
-        return this.http.post(this._deleteStockUrl, { s: s })
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this._deleteStockUrl, { item: s }, options)
             .map(this.extractData)
             .catch(this.handleError);
     };

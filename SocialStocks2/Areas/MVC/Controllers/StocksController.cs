@@ -242,11 +242,11 @@ namespace SocialStocks2.Areas.MVC.Controllers
             }
 
             return Json(
-             new
+             new Stock()
              {
-                 Data = lastTrade,
+                 Price = lastTrade,
                  Color = color,
-                 Message = error,
+ //                Message = error,
                  Symbol = Id
              },
              JsonRequestBehavior.AllowGet);
