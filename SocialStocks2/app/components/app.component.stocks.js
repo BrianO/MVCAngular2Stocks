@@ -20,6 +20,8 @@ var AppComponent = (function () {
         this.newStockName = "";
         this.newStockSym = "";
         this.newStock = new stock_1.stock();
+        this.rownum = 0;
+        this.interval = 2;
         // this.getStocks();
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -32,7 +34,9 @@ var AppComponent = (function () {
             .subscribe(function (stocks) { return _this.stockslist = stocks; });
     };
     AppComponent.prototype.addStockToList = function (s) {
-        this.stockslist.push(s);
+        var newListItem = new stock_1.stock();
+        newListItem.Symbol = s.Symbol;
+        this.stockslist.push(newListItem);
     };
     AppComponent.prototype.symbolChanged = function () {
         var _this = this;
@@ -45,6 +49,15 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.addStock = function () {
         var _this = this;
+        var stockExists = false;
+        this.stockslist.forEach(function (s) {
+            if (s.Symbol == this.newStockSym) {
+                stockExists = true;
+            }
+        }, this);
+        if (stockExists) {
+            return;
+        }
         this._appService
             .add(this.newStockSym)
             .subscribe(function (result) {

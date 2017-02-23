@@ -48,12 +48,14 @@ var AppServiceStocks = (function () {
             .catch(this.handleError);
     };
     AppServiceStocks.prototype.remove = function (s) {
-        return this.http.post(this._deleteStockUrl, s)
+        return this.http.post(this._deleteStockUrl, { s: s })
             .map(this.extractData)
             .catch(this.handleError);
     };
     AppServiceStocks.prototype.add = function (s) {
-        return this.http.post(this._addStockUrl, s)
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this._addStockUrl, { Symbol: s }, options)
             .map(this.extractData)
             .catch(this.handleError);
     };

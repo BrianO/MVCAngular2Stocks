@@ -285,13 +285,8 @@ namespace SocialStocks2.Areas.MVC.Controllers
         {
             if (Symbol.Length == 0)
             {
-                return Json(
-               new
-               {
-                   Data = "Success"
-               });
+                return Json("Empty Param.");
             }
-
 
             Data d = new Data();
 
@@ -301,11 +296,8 @@ namespace SocialStocks2.Areas.MVC.Controllers
 
             d = null;
 
-            return Json(
-                new
-                {
-                    Data = "Success"
-                });
+            return Json("Success");
+                
         }
 
 

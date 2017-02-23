@@ -18,7 +18,9 @@ export class AppComponent {
     newStockName = "";
     newStockSym = "";
     newStock = new stock();
-    
+    rownum = 0;
+    interval = 2;
+
     constructor(private _appService: AppServiceStocks) {
         // this.getStocks();
     }
@@ -35,7 +37,9 @@ export class AppComponent {
     }
 
     private addStockToList(s: stock) {
-        this.stockslist.push(s);
+        var newListItem = new stock();
+        newListItem.Symbol = s.Symbol;
+        this.stockslist.push(newListItem);
     }
 
     symbolChanged() {
@@ -47,7 +51,20 @@ export class AppComponent {
             });
     }
 
+
     addStock() {
+        var stockExists = false;
+
+        this.stockslist.forEach(function (s) {
+            if (s.Symbol == this.newStockSym) {
+                stockExists = true;
+            }
+        }, this);
+
+        if (stockExists) {
+            return;
+        }
+
         this._appService
             .add(this.newStockSym)
             .subscribe(result => {
