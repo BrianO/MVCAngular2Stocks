@@ -57,7 +57,7 @@ var AppStocks = (function () {
 AppStocks = __decorate([
     core_1.Component({
         selector: 'stocks',
-        templateUrl: './app/components/app.component.stocks2.html?v=23',
+        templateUrl: './app/components/app.component.stocks2.html?v=232',
         providers: [app_service_stocks_1.AppServiceStocks]
     }),
     __metadata("design:paramtypes", [app_service_stocks_1.AppServiceStocks])
