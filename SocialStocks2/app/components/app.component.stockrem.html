@@ -1,0 +1,33 @@
+﻿<div class="container-fluid">
+    <h2>
+        <b>Confirm Delete of?</b>
+    </h2>
+    <form>
+        <div class="form-group">
+            <label class="control-label">
+                <b>Name :</b>
+            </label>
+            <div class="form-control-static">
+                {{stock.Name}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">
+                <b>Symbol :</b>
+            </label>
+            <div class="form-control-static">
+                {{stock.Symbol}}
+            </div>
+        </div>
+        <div class="row">
+            <center>
+                <button class="btn btn-primary" 
+                        (click)="remove()">Delete</button>
+                <button class="btn" 
+                        routerLink="/">Cancel</button>
+            </center>
+        </div>
+    </form>
+</div>
+
+

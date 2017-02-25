@@ -10,6 +10,12 @@ namespace SocialStocks2
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+              name: "ngOverride",
+              url: "Stocks/StocksAngular/{*.}",
+              defaults: new { controller = "Stocks", action = "StocksAngular" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

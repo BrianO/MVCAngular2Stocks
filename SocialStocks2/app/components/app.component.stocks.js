@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var stock_1 = require("./stock");
 var app_service_stocks_1 = require("../services/app.service.stocks");
-var AppComponent = (function () {
-    function AppComponent(_appService) {
+var AppStocks = (function () {
+    function AppStocks(_appService) {
         this._appService = _appService;
         this.name = 'Angular Stocks';
         this.mode = 'Observable';
@@ -22,13 +22,12 @@ var AppComponent = (function () {
         this.newStock = new stock_1.stock();
         this.rownum = 0;
         this.interval = 2;
-        // this.getStocks();
     }
-    AppComponent.prototype.ngOnInit = function () {
+    AppStocks.prototype.ngOnInit = function () {
         this.newStockName = "";
         this.getStocks();
     };
-    AppComponent.prototype.readPrice = function () {
+    AppStocks.prototype.readPrice = function () {
         var _this = this;
         this._appService.readPrice(this.stockslist[this.rownum].Symbol)
             .subscribe(function (result) {
@@ -41,11 +40,11 @@ var AppComponent = (function () {
             _this.getNextQuote();
         });
     };
-    AppComponent.prototype.getNextQuote = function () {
+    AppStocks.prototype.getNextQuote = function () {
         var _this = this;
         setTimeout(function () { _this.readPrice(); }, this.interval * 1000);
     };
-    AppComponent.prototype.getStocks = function () {
+    AppStocks.prototype.getStocks = function () {
         var _this = this;
         this._appService.stockslist()
             .subscribe(function (stocks) {
@@ -53,46 +52,15 @@ var AppComponent = (function () {
             _this.getNextQuote();
         });
     };
-    AppComponent.prototype.addStockToList = function (s) {
-        var newListItem = new stock_1.stock();
-        newListItem.Symbol = s.Symbol;
-        this.stockslist.push(newListItem);
-    };
-    AppComponent.prototype.symbolChanged = function () {
-        var _this = this;
-        this._appService
-            .stockDetail(this.newStockSym)
-            .subscribe(function (result) {
-            _this.newStockName = result.Name;
-            _this.newStock.Symbol = _this.newStockSym;
-        });
-    };
-    AppComponent.prototype.addStock = function () {
-        var _this = this;
-        var stockExists = false;
-        this.stockslist.forEach(function (s) {
-            if (s.Symbol == this.newStockSym) {
-                stockExists = true;
-            }
-        }, this);
-        if (stockExists) {
-            return;
-        }
-        this._appService
-            .add(this.newStockSym)
-            .subscribe(function (result) {
-            _this.addStockToList(_this.newStock);
-        });
-    };
-    return AppComponent;
+    return AppStocks;
 }());
-AppComponent = __decorate([
+AppStocks = __decorate([
     core_1.Component({
         selector: 'stocks',
-        templateUrl: './app/components/app.component.stocks2.html',
+        templateUrl: './app/components/app.component.stocks2.html?v=23',
         providers: [app_service_stocks_1.AppServiceStocks]
     }),
     __metadata("design:paramtypes", [app_service_stocks_1.AppServiceStocks])
-], AppComponent);
-exports.AppComponent = AppComponent;
+], AppStocks);
+exports.AppStocks = AppStocks;
 //# sourceMappingURL=app.component.stocks.js.map
