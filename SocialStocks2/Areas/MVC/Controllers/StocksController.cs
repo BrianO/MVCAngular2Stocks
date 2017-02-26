@@ -60,6 +60,32 @@ namespace SocialStocks2.Areas.MVC.Controllers
             }
         }
 
+
+        [Authorize()]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public JsonResult ReadYahooNewsData(string Symbol)
+        {
+            List<RSSItem> RSSItems = new List<RSSItem>();
+
+            try
+            {
+                string Link = "http://feeds.finance.yahoo.com/rss/2.0/headline?s=";
+                Link += Symbol;
+                Link += "&region=US&lang=en-US";
+
+                getNewsData(Link, RSSItems);
+
+            }
+            catch (System.Exception exception)
+            {
+                return Json("Error " + exception,
+                    JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(RSSItems,
+                JsonRequestBehavior.AllowGet);
+        }
+
         [Authorize()]
         [AcceptVerbs(HttpVerbs.Get)]
         public JsonResult ReadNewsData(string Link)

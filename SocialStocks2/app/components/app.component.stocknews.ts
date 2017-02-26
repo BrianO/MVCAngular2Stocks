@@ -33,7 +33,7 @@ export class NewsComponent {
         this.route
             .params
             .switchMap(
-            (params: Params) => this._appService.readNews(params["id"]))
+            (params: Params) => this._appService.readYahooNews(params["id"]))
             .subscribe(r => {
                 this.newsItems = r;
 

@@ -49,7 +49,14 @@ var AppServiceStocks = (function () {
             + "&region=US&lang=en-US";
         var params = new http_1.URLSearchParams();
         params.set('Link', newsLink);
-        return this.http.get("/Stocks/ReadNewsData?", { search: params })
+        return this.http.get("Stocks/ReadNewsData?", { search: params })
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    AppServiceStocks.prototype.readYahooNews = function (symbol) {
+        var params = new http_1.URLSearchParams();
+        params.set('Symbol', symbol);
+        return this.http.get("Stocks/ReadYahooNewsData", { search: params })
             .map(this.extractData)
             .catch(this.handleError);
     };

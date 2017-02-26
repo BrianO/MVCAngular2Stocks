@@ -22,7 +22,7 @@ var NewsComponent = (function () {
         var _this = this;
         this.route
             .params
-            .switchMap(function (params) { return _this._appService.readNews(params["id"]); })
+            .switchMap(function (params) { return _this._appService.readYahooNews(params["id"]); })
             .subscribe(function (r) {
             _this.newsItems = r;
             _this.newsItems.forEach(function (item) {

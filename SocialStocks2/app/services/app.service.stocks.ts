@@ -55,7 +55,18 @@ export class AppServiceStocks {
         let params: URLSearchParams = new URLSearchParams();
         params.set('Link', newsLink);
     
-        return this.http.get("/Stocks/ReadNewsData?",
+        return this.http.get("Stocks/ReadNewsData?",
+            { search: params })
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    readYahooNews(symbol: string): Observable<rssitem[]> {
+       
+        let params: URLSearchParams = new URLSearchParams();
+        params.set('Symbol', symbol);
+
+        return this.http.get("Stocks/ReadYahooNewsData",
             { search: params })
             .map(this.extractData)
             .catch(this.handleError);

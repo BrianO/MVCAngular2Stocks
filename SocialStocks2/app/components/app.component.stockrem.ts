@@ -41,7 +41,9 @@ export class RemComponent {
     }
     
     remove() {
-        
+
+        this.removeStock = new stock();
+
         this.removeStock.Symbol = this.stockSymbol;
 
         this._appService

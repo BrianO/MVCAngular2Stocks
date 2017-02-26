@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var stock_1 = require("./stock");
 var app_service_stocks_1 = require("../services/app.service.stocks");
 var RemComponent = (function () {
     function RemComponent(route, _appService, router) {
@@ -32,6 +33,7 @@ var RemComponent = (function () {
     };
     RemComponent.prototype.remove = function () {
         var _this = this;
+        this.removeStock = new stock_1.stock();
         this.removeStock.Symbol = this.stockSymbol;
         this._appService
             .remove(this.removeStock)
