@@ -71,8 +71,6 @@ export class AddComponent {
         this._appService
             .add(this.newStockSym)
             .subscribe(result => {
-                // this.addStockToList(this.newStock);
-
                 this.router.navigate([ '/' ]);
             });
     }

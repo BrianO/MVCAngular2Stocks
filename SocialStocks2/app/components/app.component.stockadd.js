@@ -62,7 +62,6 @@ var AddComponent = (function () {
         this._appService
             .add(this.newStockSym)
             .subscribe(function (result) {
-            // this.addStockToList(this.newStock);
             _this.router.navigate(['/']);
         });
     };

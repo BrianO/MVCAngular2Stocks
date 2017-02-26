@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './components/app.component';
 import { AppStocks } from './components/app.component.stocks';
 import { AddComponent } from './components/app.component.stockadd';
+import { RemComponent } from './components/app.component.stockrem';
+import { NewsComponent } from './components/app.component.stocknews';
 
 import { PageNotFoundComponent } from './components/not-found.component';
 
@@ -16,6 +18,14 @@ const appRoutes: Routes = [
     {
         path: 'Stocks/StocksAngular/Add',
         component: AddComponent
+    },
+    {
+        path: 'Stocks/StocksAngular/Delete/:id',
+        component: RemComponent
+    },
+    {
+        path: 'Stocks/StocksAngular/News/:id',
+        component: NewsComponent
     },
     {
         path: 'Stocks/StocksAngular',

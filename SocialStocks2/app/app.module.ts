@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { AppServiceStocks } from './services/app.service.stocks';
 import { AppStocks } from './components/app.component.stocks';
 import { AddComponent } from './components/app.component.stockadd';
+import { RemComponent } from './components/app.component.stockrem';
+import { NewsComponent } from './components/app.component.stocknews';
 import { AppComponent } from './components/app.component';
 
 import { PageNotFoundComponent } from './components/not-found.component';
@@ -15,13 +17,19 @@ import { AppRoutingModule } from './app-routing';
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule],
-    declarations: [AppComponent, AppStocks, AddComponent, PageNotFoundComponent],
+    declarations: [
+        AppComponent,
+        AppStocks,
+        AddComponent,
+        PageNotFoundComponent,
+        RemComponent,
+        NewsComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {
 
     // Diagnostic only: inspect router configuration
     constructor(router: Router) {
-        console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+       // console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
     }
 }

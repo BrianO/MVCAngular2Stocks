@@ -73,16 +73,12 @@ namespace SocialStocks2.Areas.MVC.Controllers
             }
             catch (System.Exception exception)
             {
-                return Json(new
-                {
-                    Data = "Error " + exception
-                }, JsonRequestBehavior.AllowGet);
+                return Json("Error " + exception, 
+                    JsonRequestBehavior.AllowGet);
             }
 
-            return Json(new
-            {
-                Data = RSSItems
-            }, JsonRequestBehavior.AllowGet);
+            return Json(RSSItems, 
+                JsonRequestBehavior.AllowGet);
         }
 
 
@@ -191,6 +187,23 @@ namespace SocialStocks2.Areas.MVC.Controllers
             }
         }
 
+        [Authorize()]
+        [AcceptVerbs(HttpVerbs.Get)]
+        [OutputCache(Duration = 360, Location = System.Web.UI.OutputCacheLocation.Server)]
+        public JsonResult GetNameFromSymbol(string Id)
+        {
+            try
+            {
+                Quote q = getQuoteFromYahoo(Id);
+
+                return Json(q.Name, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
         [Authorize()]
         [AcceptVerbs(HttpVerbs.Get)]
@@ -246,7 +259,7 @@ namespace SocialStocks2.Areas.MVC.Controllers
              {
                  Price = lastTrade,
                  Color = color,
- //                Message = error,
+                 //                Message = error,
                  Symbol = Id
              },
              JsonRequestBehavior.AllowGet);
@@ -297,7 +310,7 @@ namespace SocialStocks2.Areas.MVC.Controllers
             d = null;
 
             return Json("Success");
-                
+
         }
 
 

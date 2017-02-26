@@ -23,7 +23,7 @@
                 </a>
             </td>
             <td>
-                <a href="Stocks/StocksAngular/Remove/{{stock.Symbol}}">
+                <a [routerLink] = "['Stocks/StocksAngular/Delete/', stock.Symbol]">
                     <img src="images/Delete.png" />
                 </a>
             </td>

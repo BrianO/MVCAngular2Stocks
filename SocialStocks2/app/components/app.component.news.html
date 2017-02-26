@@ -1,0 +1,22 @@
+{{statusMessage}}
+
+<div id="accordion" class="container-fluid">
+    <div *ngFor="let item of newsItems">
+        <div class="h4 panel" style="background:#eeeeee;" (click)="toggle(item)">
+            <div style="width:24px; height:24px; border-radius:50%; background:#0094ff; float:left; text-align:center; vertical-align:middle;">
+                {{item.expandChar}}
+            </div>
+            <div style="min-height:24%; padding-left:2px; vertical-align:middle;">{{item.Title}}</div>
+        </div>
+        <div [hidden] = "!item.isVisible" style="padding-left:24px;">
+            <b><a href="{{item.Link}}" target="_blank">{{item.Title}}</a></b>
+            <p>
+                {{item.Description}}
+            </p>
+            <span style="font-size:9Px">
+                {{item.PubDate}}<br />
+                {{item.Author}}
+            </span>
+        </div>
+    </div>
+</div>

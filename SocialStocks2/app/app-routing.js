@@ -9,6 +9,8 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_component_stocks_1 = require("./components/app.component.stocks");
 var app_component_stockadd_1 = require("./components/app.component.stockadd");
+var app_component_stockrem_1 = require("./components/app.component.stockrem");
+var app_component_stocknews_1 = require("./components/app.component.stocknews");
 var not_found_component_1 = require("./components/not-found.component");
 // import { CanDeactivateGuard } from './can-deactivate-guard.service';
 // import { AuthGuard } from './auth-guard.service';
@@ -17,6 +19,14 @@ var appRoutes = [
     {
         path: 'Stocks/StocksAngular/Add',
         component: app_component_stockadd_1.AddComponent
+    },
+    {
+        path: 'Stocks/StocksAngular/Delete/:id',
+        component: app_component_stockrem_1.RemComponent
+    },
+    {
+        path: 'Stocks/StocksAngular/News/:id',
+        component: app_component_stocknews_1.NewsComponent
     },
     {
         path: 'Stocks/StocksAngular',

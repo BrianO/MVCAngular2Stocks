@@ -3,7 +3,6 @@
 @Component({
     selector: 'stocks',
     template: `
-    <h1 class="title">Angular 2 Stocks</h1> 
     <router-outlet></router-outlet>
   `
 })

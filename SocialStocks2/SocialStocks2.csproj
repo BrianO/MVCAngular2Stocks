@@ -176,6 +176,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\components\app.component.news.html" />
     <Content Include="app\components\app.component.stockadd.html" />
     <Content Include="app\components\app.component.stocks2.html" />
     <Content Include="app\components\app.component.stocks.html" />
@@ -309,6 +310,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\app-routing.ts" />
+    <TypeScriptCompile Include="app\components\app.component.stocknews.ts" />
+    <TypeScriptCompile Include="app\components\app.component.stockrem.ts" />
     <TypeScriptCompile Include="app\components\app.component.stocks.spec.ts" />
     <TypeScriptCompile Include="app\components\app.component.stocks.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />

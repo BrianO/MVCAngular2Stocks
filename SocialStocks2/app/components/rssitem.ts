@@ -5,5 +5,9 @@
     Title : string;
     PubDate : string;
     Author : string;
-    Background : string;
+    Background: string;
+    isVisible: boolean;
+    expandChar: string;
+
+
 }
