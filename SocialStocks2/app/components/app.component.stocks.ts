@@ -58,37 +58,6 @@ export class AppStocks {
             });
     }
 
-    //  private addStockToList(s: stock) {
-    //    var newListItem = new stock();
-    //    newListItem.Symbol = s.Symbol;
-    //    this.stockslist.push(newListItem);
-    //  }
-    
-    //  symbolChanged() {
-    //    this._appService
-    //        .stockDetail(this.newStockSym)
-    //        .subscribe(result => {
-    //            this.newStockName = result.Name;
-    //            this.newStock.Symbol = this.newStockSym;
-    //        });
-    //  }
-
-    //  addStock() {
-    //    var stockExists = false;
-    //    this.stockslist.forEach(function (s) {
-    //        if (s.Symbol == this.newStockSym) {
-    //            stockExists = true;
-    //        }
-    //    }, this);
-    //    if (stockExists) {
-    //        return;
-    //    }
-    //    this._appService
-    //        .add(this.newStockSym)
-    //        .subscribe(result => {
-    //            this.addStockToList(this.newStock);
-    //        });
-    //  }
     
 
 }
