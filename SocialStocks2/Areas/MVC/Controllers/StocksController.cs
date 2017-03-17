@@ -8,6 +8,8 @@ using System.ServiceModel.Syndication;
 using System.Web.Mvc;
 using System.Xml;
 using SocialStocks2.Models;
+using TwitLib;
+
 
 namespace SocialStocks2.Areas.MVC.Controllers
 {
@@ -44,9 +46,15 @@ namespace SocialStocks2.Areas.MVC.Controllers
 
                 if (outList.Count == 0)
                 {
-                    outList = d.GetUserStocks(
+                    List<Stock> sampleList = d.GetUserStocks(
                         d.UserIdFromName("brian.f.oneil@gmail.com")
                         ).ToList<Stock>();
+
+                    foreach(Stock sample in sampleList.Take(3))
+                    {
+                        d.InsertStock(u, sample.Symbol);
+                        outList.Add(sample);
+                    }
                 }
 
                 return Json(outList, JsonRequestBehavior.AllowGet);
@@ -137,7 +145,17 @@ namespace SocialStocks2.Areas.MVC.Controllers
             feed = null;
         }
 
+        [Authorize]
+        public JsonResult GetTweets(string Symbol)
+        {
+            TwitLib.Twit t = new TwitLib.Twit();
+            string bToken = t.GetAuthToken();
 
+            TwitLib.TweetResponse response =
+                t.GetTweets(bToken, "$" + Symbol);
+
+            return Json(response.statuses, JsonRequestBehavior.AllowGet);
+        }
 
 
         private Quote getQuoteFromYahoo(string symbol)

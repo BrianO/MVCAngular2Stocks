@@ -11,6 +11,7 @@ var app_component_stocks_1 = require("./components/app.component.stocks");
 var app_component_stockadd_1 = require("./components/app.component.stockadd");
 var app_component_stockrem_1 = require("./components/app.component.stockrem");
 var app_component_stocknews_1 = require("./components/app.component.stocknews");
+var app_stocktweets_1 = require("./components/app.stocktweets");
 var not_found_component_1 = require("./components/not-found.component");
 // import { CanDeactivateGuard } from './can-deactivate-guard.service';
 // import { AuthGuard } from './auth-guard.service';
@@ -29,7 +30,15 @@ var appRoutes = [
         component: app_component_stocknews_1.NewsComponent
     },
     {
+        path: 'Stocks/StocksAngular/Tweets/:id',
+        component: app_stocktweets_1.TweetComponent
+    },
+    {
         path: 'Stocks/StocksAngular',
+        component: app_component_stocks_1.AppStocks
+    },
+    {
+        path: 'stocks/stocksangular',
         component: app_component_stocks_1.AppStocks
     },
     { path: '', redirectTo: 'Stocks/StocksAngular', pathMatch: 'full' },

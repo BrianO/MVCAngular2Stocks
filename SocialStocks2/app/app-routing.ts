@@ -6,6 +6,7 @@ import { AppStocks } from './components/app.component.stocks';
 import { AddComponent } from './components/app.component.stockadd';
 import { RemComponent } from './components/app.component.stockrem';
 import { NewsComponent } from './components/app.component.stocknews';
+import { TweetComponent } from './components/app.stocktweets';
 
 import { PageNotFoundComponent } from './components/not-found.component';
 
@@ -28,7 +29,15 @@ const appRoutes: Routes = [
         component: NewsComponent
     },
     {
+        path: 'Stocks/StocksAngular/Tweets/:id',
+        component: TweetComponent
+    },
+    {
         path: 'Stocks/StocksAngular',
+        component: AppStocks
+    },
+    {
+        path: 'stocks/stocksangular',
         component: AppStocks
     },    
     { path: '', redirectTo: 'Stocks/StocksAngular', pathMatch: 'full' },

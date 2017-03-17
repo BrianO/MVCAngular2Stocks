@@ -1,0 +1,11 @@
+﻿<h3>Tweets for  : {{stockSymbol}}</h3>
+<hr />
+<div *ngFor="let item of tweets" style="border: 1px thin #dddddd;">
+    <div style="background:#000000; color:#ffffff;">
+        {{item.text}}
+    </div>
+    <div style="background:#000000; color:#cccccc;">
+        {{item.created_at}} - <b>{{item.user.screen_name}}</b>
+    </div> 
+</div>
+

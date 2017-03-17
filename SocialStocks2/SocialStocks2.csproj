@@ -116,8 +116,8 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -180,6 +180,7 @@
     <Content Include="app\components\app.component.stockadd.html" />
     <Content Include="app\components\app.component.stocks2.html" />
     <Content Include="app\components\app.component.stocks.html" />
+    <Content Include="app\components\app.stocktweets.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -199,6 +200,7 @@
     <Content Include="images\plus.gif" />
     <Content Include="images\Properties.jpg" />
     <Content Include="images\twitter.png" />
+    <Content Include="images\twitter_icon.jpg" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
@@ -220,6 +222,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\TwitInit.js" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="Areas\MVC\Views\Stocks\StocksAngular.cshtml" />
@@ -317,11 +320,14 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\components\app.component.stockadd.ts" />
     <TypeScriptCompile Include="app\components\app.component.ts" />
+    <TypeScriptCompile Include="app\components\app.stocktweets.ts" />
     <TypeScriptCompile Include="app\components\not-found.component.ts" />
     <TypeScriptCompile Include="app\components\quote.ts" />
     <TypeScriptCompile Include="app\components\rssitem.ts" />
     <TypeScriptCompile Include="app\components\selective-preloading-strategy.ts" />
     <TypeScriptCompile Include="app\components\stock.ts" />
+    <TypeScriptCompile Include="app\components\tweet.ts" />
+    <TypeScriptCompile Include="app\components\tweetUser.ts" />
     <TypeScriptCompile Include="app\services\app.service.stocks.ts" />
     <TypeScriptCompile Include="main.ts" />
   </ItemGroup>
@@ -330,6 +336,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TwitLib\TwitLib.csproj">
+      <Project>{a2b44f93-7dfc-45af-9cf8-28f3f5c71b77}</Project>
+      <Name>TwitLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

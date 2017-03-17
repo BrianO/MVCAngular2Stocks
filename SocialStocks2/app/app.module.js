@@ -17,6 +17,7 @@ var app_component_stocks_1 = require("./components/app.component.stocks");
 var app_component_stockadd_1 = require("./components/app.component.stockadd");
 var app_component_stockrem_1 = require("./components/app.component.stockrem");
 var app_component_stocknews_1 = require("./components/app.component.stocknews");
+var app_stocktweets_1 = require("./components/app.stocktweets");
 var app_component_1 = require("./components/app.component");
 var not_found_component_1 = require("./components/not-found.component");
 var app_routing_1 = require("./app-routing");
@@ -36,6 +37,7 @@ AppModule = __decorate([
             app_component_stockadd_1.AddComponent,
             not_found_component_1.PageNotFoundComponent,
             app_component_stockrem_1.RemComponent,
+            app_stocktweets_1.TweetComponent,
             app_component_stocknews_1.NewsComponent
         ],
         bootstrap: [app_component_1.AppComponent]

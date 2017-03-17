@@ -5,6 +5,7 @@
             <th style="width:50%;">Symbol</th>
             <th>Price</th>
             <th>News</th>
+            <th>Tweets</th>
             <th>
                 <button class="btn"
                         routerLink="/Stocks/StocksAngular/Add">
@@ -16,12 +17,17 @@
     <tbody>
         <tr *ngFor="let stock of stockslist">
             <td>
-                <a routerLink = "['/Stocks/StocksAngular/Detail/', stock.Symbol]">{{ stock.Symbol }}</a>
+                <a [routerLink] = "['/Stocks/StocksAngular/Detail/', stock.Symbol]">{{ stock.Symbol }}</a>
             </td>
             <td [ngClass]="stock.Color">{{stock.Price}}</td>
             <td>
                 <a [routerLink] = "['/Stocks/StocksAngular/News/', stock.Symbol]">
                     <img src="images/Properties.jpg" />
+                </a>
+            </td>
+            <td>
+                <a [routerLink]="['/Stocks/StocksAngular/Tweets/', stock.Symbol]">
+                    <img src="images/twitter_icon.jpg" />
                 </a>
             </td>
             <td>

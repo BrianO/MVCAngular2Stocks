@@ -10,6 +10,8 @@ import { AppStocks } from './components/app.component.stocks';
 import { AddComponent } from './components/app.component.stockadd';
 import { RemComponent } from './components/app.component.stockrem';
 import { NewsComponent } from './components/app.component.stocknews';
+import { TweetComponent } from './components/app.stocktweets';
+
 import { AppComponent } from './components/app.component';
 
 import { PageNotFoundComponent } from './components/not-found.component';
@@ -23,6 +25,7 @@ import { AppRoutingModule } from './app-routing';
         AddComponent,
         PageNotFoundComponent,
         RemComponent,
+        TweetComponent,
         NewsComponent],
     bootstrap: [AppComponent]
 })

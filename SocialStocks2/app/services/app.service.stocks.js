@@ -20,11 +20,17 @@ var AppServiceStocks = (function () {
         this._getPriceUrl = "Stocks/ReadPrice?Id=";
         this._getNameUrl = "Stocks/GetNameFromSymbol?Id=";
         this._getNewsUrl = "http://feeds.finance.yahoo.com/rss/2.0/headline?s=";
+        this._getTweetsUrl = "Stocks/GetTweets?Symbol=";
         this._deleteStockUrl = "Stocks/Remove";
         this._addStockUrl = "Stocks/AddJSON";
     }
     AppServiceStocks.prototype.stockslist = function () {
         return this.http.get(this._getStocksListUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    AppServiceStocks.prototype.stockTweets = function (symbol) {
+        return this.http.get(this._getTweetsUrl + symbol)
             .map(this.extractData)
             .catch(this.handleError);
     };

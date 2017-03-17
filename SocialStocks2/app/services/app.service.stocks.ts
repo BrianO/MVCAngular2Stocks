@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import { stock } from '../components/stock';
 import { rssitem } from '../components/rssitem';
 import { quote } from '../components/quote';
+import { tweet } from '../components/tweet';
 
 @Injectable()
 export class AppServiceStocks {
@@ -14,6 +15,8 @@ export class AppServiceStocks {
     private _getPriceUrl = "Stocks/ReadPrice?Id=";
     private _getNameUrl = "Stocks/GetNameFromSymbol?Id=";
     private _getNewsUrl = "http://feeds.finance.yahoo.com/rss/2.0/headline?s=";
+
+    private _getTweetsUrl = "Stocks/GetTweets?Symbol=";
 
     private _deleteStockUrl = "Stocks/Remove";
     private _addStockUrl = "Stocks/AddJSON";
@@ -25,6 +28,12 @@ export class AppServiceStocks {
 
     stockslist(): Observable<stock[]> {
         return this.http.get(this._getStocksListUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    stockTweets(symbol: string): Observable<tweet[]> {
+        return this.http.get(this._getTweetsUrl + symbol)
             .map(this.extractData)
             .catch(this.handleError);
     }
