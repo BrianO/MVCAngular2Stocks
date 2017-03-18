@@ -11,35 +11,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_service_stocks_1 = require("../services/app.service.stocks");
-var TweetComponent = (function () {
-    function TweetComponent(route, _appService, router) {
+var DetailComponent = (function () {
+    function DetailComponent(route, _appService, router) {
         this.route = route;
         this._appService = _appService;
         this.router = router;
         this.mode = 'Observable';
     }
-    TweetComponent.prototype.ngOnInit = function () {
+    DetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.sub = this.route
-            .params
-            .subscribe(function (params) {
-            _this.stockSymbol = params['id'];
-        });
         this.route
             .params
-            .switchMap(function (params) { return _this._appService.stockTweets(params["id"]); })
-            .subscribe(function (r) { _this.tweets = r; });
+            .switchMap(function (params) { return _this._appService.stockDetail(params["id"]); })
+            .subscribe(function (r) {
+            _this.stockDetail = r;
+            _this.stockName = r.Name;
+            if (_this.stockDetail.DividendYield.length == 0)
+                _this.stockDetail.DividendYield = "n/a";
+        }, function (error) { return _this.statusMessage = error; });
     };
-    return TweetComponent;
+    DetailComponent.prototype.Return = function () {
+        console.error(" ");
+    };
+    return DetailComponent;
 }());
-TweetComponent = __decorate([
+DetailComponent = __decorate([
     core_1.Component({
-        templateUrl: './app/components/app.stocktweets.html?v=1',
+        templateUrl: './app/components/app.stockdetail.html',
         providers: [app_service_stocks_1.AppServiceStocks]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
         app_service_stocks_1.AppServiceStocks,
         router_1.Router])
-], TweetComponent);
-exports.TweetComponent = TweetComponent;
-//# sourceMappingURL=app.stocktweets.js.map
+], DetailComponent);
+exports.DetailComponent = DetailComponent;
+//# sourceMappingURL=app.stockdetail.js.map

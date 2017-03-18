@@ -6,6 +6,7 @@ import { AppStocks } from './components/app.component.stocks';
 import { AddComponent } from './components/app.component.stockadd';
 import { RemComponent } from './components/app.component.stockrem';
 import { NewsComponent } from './components/app.component.stocknews';
+import { DetailComponent } from './components/app.stockdetail';
 import { TweetComponent } from './components/app.stocktweets';
 
 import { PageNotFoundComponent } from './components/not-found.component';
@@ -23,6 +24,10 @@ const appRoutes: Routes = [
     {
         path: 'Stocks/StocksAngular/Delete/:id',
         component: RemComponent
+    },
+    {
+        path: 'Stocks/StocksAngular/Detail/:id',
+        component: DetailComponent
     },
     {
         path: 'Stocks/StocksAngular/News/:id',

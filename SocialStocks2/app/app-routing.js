@@ -11,6 +11,7 @@ var app_component_stocks_1 = require("./components/app.component.stocks");
 var app_component_stockadd_1 = require("./components/app.component.stockadd");
 var app_component_stockrem_1 = require("./components/app.component.stockrem");
 var app_component_stocknews_1 = require("./components/app.component.stocknews");
+var app_stockdetail_1 = require("./components/app.stockdetail");
 var app_stocktweets_1 = require("./components/app.stocktweets");
 var not_found_component_1 = require("./components/not-found.component");
 // import { CanDeactivateGuard } from './can-deactivate-guard.service';
@@ -24,6 +25,10 @@ var appRoutes = [
     {
         path: 'Stocks/StocksAngular/Delete/:id',
         component: app_component_stockrem_1.RemComponent
+    },
+    {
+        path: 'Stocks/StocksAngular/Detail/:id',
+        component: app_stockdetail_1.DetailComponent
     },
     {
         path: 'Stocks/StocksAngular/News/:id',

@@ -3,9 +3,9 @@
     <thead>
         <tr>
             <th style="width:50%;">Symbol</th>
-            <th>Price</th>
+            <th style="text-align:right;">Price</th>
             <th>News</th>
-            <th>Tweets</th>
+            <th></th>
             <th>
                 <button class="btn"
                         routerLink="/Stocks/StocksAngular/Add">
@@ -19,7 +19,8 @@
             <td>
                 <a [routerLink] = "['/Stocks/StocksAngular/Detail/', stock.Symbol]">{{ stock.Symbol }}</a>
             </td>
-            <td [ngClass]="stock.Color">{{stock.Price}}</td>
+            <td [ngClass]="stock.Color" 
+                style="text-align:right;">{{stock.Price}}</td>
             <td>
                 <a [routerLink] = "['/Stocks/StocksAngular/News/', stock.Symbol]">
                     <img src="images/Properties.jpg" />

@@ -208,6 +208,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="app\components\app.component.stockrem.html" />
+    <Content Include="app\components\app.stockdetail.html" />
     <None Include="Properties\PublishProfiles\CustomConfiDiscountASP.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -320,6 +321,7 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\components\app.component.stockadd.ts" />
     <TypeScriptCompile Include="app\components\app.component.ts" />
+    <TypeScriptCompile Include="app\components\app.stockdetail.ts" />
     <TypeScriptCompile Include="app\components\app.stocktweets.ts" />
     <TypeScriptCompile Include="app\components\not-found.component.ts" />
     <TypeScriptCompile Include="app\components\quote.ts" />

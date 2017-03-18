@@ -1,0 +1,85 @@
+﻿<style>
+    [class*="col-"] {
+        min-height: 30px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 15Px;
+        background-color: rgba(86,61,124,.15);
+        border: 1px solid #ddd;
+        border: 1px solid rgba(86,61,124,.2);
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        {{statusMessage}}
+    </div>
+</div>
+
+<div class="container-fluid">
+    <h2>
+        <b>Quote</b>
+    </h2>
+    <div class="row">
+        <div class="col-md-4 col-xs-6">
+            Name :
+        </div>
+        <div class="col-md-8 col-xs-6">
+            {{stockDetail?.Name}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-6">
+            Symbol :
+        </div>
+        <div class="col-md-8 col-xs-6">
+            {{stockDetail?.Symbol}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-6">
+            Last Trade :
+        </div>
+        <div class="col-md-8 col-xs-6">
+            {{stockDetail?.LastTrade}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-6">
+            Ex Dividend :
+        </div>
+        <div class="col-md-8 col-xs-6">
+            {{stockDetail?.ExDividend}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-6">
+            Dividend Yield :
+        </div>
+        <div class="col-md-8 col-xs-6">
+            {{stockDetail?.DividendYield}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-6">
+            PE :
+        </div>
+        <div class="col-md-8 col-xs-6">
+            {{stockDetail?.PERatio}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-6">
+            Percent Change :
+        </div>
+        <div class="col-md-8 col-xs-6">
+            {{stockDetail?.PercentChange}}
+        </div>
+    </div>
+    
+</div>
+    
+<button class = "btn"
+        routerLink = "/">
+    Return...
+</button>

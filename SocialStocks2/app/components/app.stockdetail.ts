@@ -1,28 +1,22 @@
 ﻿import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { tweetUser } from './tweetUser';
-import { tweet } from './tweet';
 import { stock } from './stock';
 import { quote } from './quote';
-import { rssitem } from './rssItem';
 import { Observable } from 'rxjs/Observable';
 import { AppServiceStocks } from '../services/app.service.stocks';
 
+
 @Component({
-    templateUrl: './app/components/app.stocktweets.html?v=1',
+    templateUrl: './app/components/app.stockdetail.html',
     providers: [AppServiceStocks]
 })
-
-
-export class TweetComponent {
+export class DetailComponent {
     mode = 'Observable';
-    tweetStock: stock;
-    tweets: tweet[];
-
-    stockSymbol: string;
+    stockDetail: quote;
     stockName: string;
     private sub: any;      // -> Subscriber
+    statusMessage: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,22 +25,26 @@ export class TweetComponent {
     }
 
     ngOnInit() {
-    
-        this.sub = this.route
-            .params
-            .subscribe(params => {
-                this.stockSymbol = params['id'];
-            });
 
         this.route
             .params
             .switchMap(
-            (params: Params) => this._appService.stockTweets(params["id"]))
-            .subscribe(r => { this.tweets = r; });
-           
+            (params: Params) => this._appService.stockDetail(params["id"]))
+            .subscribe(r => {
+                this.stockDetail = r;
+                this.stockName = r.Name;
+
+                if (this.stockDetail.DividendYield.length == 0)
+                    this.stockDetail.DividendYield = "n/a";
+
+            },
+            error => this.statusMessage = <any>error);
 
     }
 
-}
+    Return() {
+        console.error(" ");  
+    }
 
+}
 
