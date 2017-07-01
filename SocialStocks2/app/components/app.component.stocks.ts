@@ -6,7 +6,7 @@ import { AppServiceStocks } from '../services/app.service.stocks';
 
 @Component({
     selector: 'stocks',
-    templateUrl: './app/components/app.component.stocks.html?v=4',
+    templateUrl: './app/components/app.component.stocks.html',
     providers: [AppServiceStocks]
 })
 
