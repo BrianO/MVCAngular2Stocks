@@ -270,7 +270,7 @@ namespace SocialStocks2.Areas.MVC.Controllers
 
         [Authorize()]
         [AcceptVerbs(HttpVerbs.Get)]
-        [OutputCache(Duration = 360, VaryByParam = "Id")]
+        [OutputCache(Duration = 360, VaryByParam = "Id", Location = System.Web.UI.OutputCacheLocation.Server)]
         public JsonResult ReadPrice(string Id)
         {
             string lastTrade = string.Empty;
