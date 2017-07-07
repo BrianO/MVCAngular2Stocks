@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CustomConfigBuilderMvc.Models.Feed>
+
+@using CustomConfigBuilderMvc
+
+ @foreach (var item in Model) {    
+     <div class="ui-widget-content ui-corner-tl ui-corner-bl ui-corner-tr ui-corner-br" 
+          style="display:inline-table; width:245Px; margin-top:4Px; margin-left:2Px;">
+      <div style="display: inline-table; width: 176Px; padding-left: 4Px; margin-top: 2Px; vertical-align: middle;">
+        @Ajax.ActionLink(item.Title,
+             "ReadFeeds",
+              new { Link = item.Url, Id = item.Id },
+              new AjaxOptions
+              {
+               HttpMethod = "Get",
+               OnBegin = "BeginRead",
+               OnSuccess = "ReadComplete",
+               OnFailure = "AddFail"
+               }, 
+              new 
+              { title = "Click to Read Items", style="text-decoration:none" })
+      </div>
+      <div style="display: inline-table; width: 18Px; margin-top: 2Px; margin-right: 2Px; vertical-align: middle;">
+        <a href="@item.Url" title="RSS Feed Address" target="_blank"><img src="~/images/Properties.jpg" border-style="none" alt="Feed Address" style="border:none;" /></a>
+      </div>
+      <div style="display: inline-table; width: 18Px; margin-top: 2Px; vertical-align: middle; ">
+        @Ajax.ImageActionLink(
+            "/images/Delete.png",
+            "Delete",
+            "Delete",
+            new { id = item.Id },
+            new AjaxOptions
+            {
+                HttpMethod = "Post",
+                Confirm = "Are you sure?",
+                OnSuccess = "DeleteComplete",
+                OnFailure = "AddFail"
+            })
+      </div>
+    </div> 
+  }

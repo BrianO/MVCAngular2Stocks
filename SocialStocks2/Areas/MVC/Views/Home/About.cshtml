@@ -1,12 +1,82 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<hgroup>
-    <h2>@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
-</hgroup>
-<div class="row-fluid">
-    <div class="span12">
-        <p>Use this area to provide additional information.</p>
-    </div>
+
+@section Scripts {
+
+<script type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
+<script src="~/Scripts/BingMaps.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+}
+
+<br />
+
+<div class="jumbotron">
+    
+    <h1>Bing Maps Demo</h1>
+
+    <p class="lead">
+        This page can get a Bing map with just a basic static map for a zip code, or it can create the road map for
+        a location with a pushpin and resizing controls.
+    </p>
 </div>
+
+    @{ using (Ajax.BeginForm("AddCustomer", "Home",
+                                                                new AjaxOptions()
+                                                                {
+                                                                    HttpMethod = "Post",
+                                                                    OnSuccess = "AddComplete",
+                                                                    OnFailure = "AddFail"
+                                                                }))
+        {
+            
+                <h4>Add Customer:</h4>
+                <div class="form-group">
+                    @Html.Label("Name", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBox("CustomerName","", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Address", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBox("CustomerAddress", "", new { size = 50, maxlength = 80, @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Phone", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBox("CustomerPhone", "", new { @class = "form-control" })
+                    </div>
+                </div>
+                <center>
+                    <input type="submit" value="Add" class="btn-primary" />
+                </center>
+        }
+    }
+
+    <h4>Customers:</h4>
+    <div id="CustDiv" class="row">
+        @{
+            Html.RenderPartial("Customers", ViewBag.Customers as List<Customer>);
+        }
+    </div>
+
+    <hr />
+    Get Map with Pushpin :
+    <div id="mapDiv"
+         style="position:relative; width:100%; border: 2px groove red;"></div>
+
+    <div style="position:relative; width:100%; height:auto; background: #000000; border: 2px groove navy;">
+        <input id="txtQuery" type="text" size="60" value="6800 Monument Ave, Richmond, VA 23226" />
+        <input type="button" value="Find" onclick="ClickGeocode()" />
+    </div>
+    <div style="display:none;">
+        Get Bing Map For Zip :
+        <input type="text" id="yourZipCode" oninput="getZipMap()" />
+        <br />
+        <div id="bCoordinates"></div>
+        <img id="bMap" height="500" width="500" />
+    </div>
+

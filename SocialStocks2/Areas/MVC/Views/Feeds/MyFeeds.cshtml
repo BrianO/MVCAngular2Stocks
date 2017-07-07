@@ -1,0 +1,186 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+ <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>My Feeds</title>
+
+     @Styles.Render("~/Content/css")          
+     @Styles.Render("~/Content/themes/base/css")     
+       
+     @Scripts.Render("~/bundles/jquery")
+     @Scripts.Render("~/bundles/jquery-ui")
+     
+     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script type="text/javascript">
+        // Brian O'Neil - 2013
+
+        $(function () {
+            $("#AddFeedForm").hide();
+            $("#divLoading").hide();
+            $("#myFeeds").css("height", $(window).height() - 44);
+            $("#myResizer").css("height", $(window).height() - 44);
+            $("#myArticles").css("height", $(window).height() - 136);
+            $("#myArticles").css("width", $(window).width() - 320);
+            $(document.body).css("padding-top",0);
+        });
+        
+        $(window).resize(function(){
+            $("#myFeeds").css("height", $(window).height() - 44);
+            $("#myResizer").css("height", $(window).height() - 44);
+            $("#myArticles").css("height", $(window).height() - 136);
+            $("#myArticles").css("width", $(window).width() - 320);
+        });
+
+        function toggleChild(item) {
+            var child = document.getElementById(item);
+
+            var disProp = child.style.display;
+            if (disProp == "none") {
+                child.style.display = "block";
+            }
+            else {
+                child.style.display = "none";
+            }
+        }
+
+        function AddFeed() {
+            $("#AddFeedForm").dialog({ modal: true, height: 280, width: 480 });
+        }
+        
+        var plusImagePath =  @Html.Raw("\"" + Url.Content("~/Images/plus.gif") + "\"");
+        var minusImagePath = @Html.Raw("\"" + Url.Content("~/Images/minus.gif") + "\"");
+
+        function toggleSize() {
+            if ($("#plusMinus").attr("src") == plusImagePath) {
+                $("#plusMinus").attr("src", minusImagePath);
+                $("#myFeeds").css("width", "280Px");
+                $("#myArticles").css("width", $(window).width() - 290);
+            }
+            else {
+                $("#plusMinus").attr("src", plusImagePath);
+                $("#myFeeds").css("width", 0);
+                $("#myArticles").css("width", $(window).width() - 50);
+            }
+        }
+
+        function AddComplete(context) {
+            myFeeds.innerHTML = context.Data;
+
+            $("#AddFeedForm").dialog("close");
+            $("#bttnAdd").val("+");
+        }
+
+        function BeginRead(context) {
+            $("#divLoading").show();
+        }
+
+        function ReadComplete(context) {
+            var decoded = unescape(context.Data);
+
+            $("#divLoading").hide();
+            $("#myArticles").show();
+            $("#myArticles").html(decoded);
+        }
+
+        function DeleteComplete(context) {
+            myFeeds.innerHTML = context.Data;
+        }
+        
+        function ValidateAdd() {
+            if ($("#txtTitle").val().length == 0) {
+                alert("Title is required.");
+                return false;
+            }
+            if ($("#txtUrl").val().length == 0) {
+                alert("Url is required.");
+                return false;
+            }
+            return true;
+        }
+
+        function AddFail() {
+            alert("Failure retrieving data. Login may have expired.");
+        }
+    </script>
+ </head>
+ <body>
+  <div id="AddFeedForm" style="width:500Px;height:280Px;text-align:left;display:none;" title="Add a Feed">
+     @{ using (Ajax.BeginForm("Create", "Feeds",
+          new AjaxOptions()
+          {
+              HttpMethod = "Post",
+              OnSuccess = "AddComplete",
+              OnFailure = "AddFail",
+              OnBegin = "ValidateAdd"
+          }))
+        { 
+         <table style="width:100%;font-size:12Px;">
+            <tr>
+            <td>Title for the Feed:</td>
+            <td>@Html.TextBox("txtTitle")</td>
+            </tr>
+            <tr>
+            <td>Link for the Feed:</td>
+            <td>@Html.TextBox("txtUrl", "", new { size = 44, maxlength = 100 })</td>
+            </tr>
+         </table>
+         <center>
+          <input type="submit" value="Add" />
+         </center>
+        }
+      }
+  </div>
+  <div id="divLoading" class="loading">
+   <div 
+     style="background:#ffffff; opacity:1.0; height:48Px; width:52Px; padding-top:9Px; vertical-align: middle; display: inline-block; margin-top:200Px;">
+    <img src="~/Images/ajax-loader.gif" 
+         style="border:none;" height="32Px" width="32Px" align="middle" alt="loading" />
+   </div>
+  </div>
+  <table class="body-content" 
+         style="width:100%; padding-top:0Px; margin-top:0Px; margin-left:0Px; border-collapse:collapse; background:#dddddd;">
+   <tr>
+     <td style="width:30%; padding-left:4px;"> 
+      <b>RSS Feeds</b> 
+      <input type="button" id="bttnAdd" onclick="javascript:AddFeed()" value="+" title="Add Feed" />
+    </td>
+    <td style="vertical-align:middle; width:40%;">
+     @Html.Partial("_LoginPartial")
+    </td>
+    <td style="vertical-align:middle; text-align:right; width:30%; padding-right: 14px;">
+     @Html.ActionLink("Home", "Index", "Home")
+    </td>
+   </tr>
+  </table>
+  <div id="myFeeds" style="width:280Px; float:left; background:#eeeeee; overflow-y:scroll; margin-left:0Px; padding-bottom:4px;">
+      @{
+         Html.RenderPartial("FeedList", (ViewData["CurrentUser"] as WebUser).Feeds);
+      }
+  </div> 
+  <div id="myResizer" 
+        class="resizer"
+        style="width:8Px; margin-left:0Px; margin-right:0Px; float:left;" 
+        onclick="toggleSize()">
+    <img id="plusMinus" src="~/Images/minus.gif" alt="Hide List" />
+  </div>
+  <div id="myArticles" style="overflow-y:scroll;"></div>
+  <div id="googleAds" style="float:right; width:auto; padding-bottom:0Px; padding-top:0Px;">
+   <script type="text/javascript"><!--
+       google_ad_client = "ca-pub-5130568562865030";
+       /* CustomFeedsUnit */
+       google_ad_slot = "5742132545";
+       google_ad_width = 728;
+       google_ad_height = 90;
+      //-->
+   </script>
+   <script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+   </script>
+  </div>
+ </body>
+</html>

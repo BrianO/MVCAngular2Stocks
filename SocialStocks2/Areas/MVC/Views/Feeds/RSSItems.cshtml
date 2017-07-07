@@ -1,0 +1,25 @@
+﻿@model IEnumerable<CustomConfigBuilderMvc.Models.RSSItem>
+<table style="width:100%">
+@foreach (var item in Model.OrderByDescending(x=>x.PubDate)) {
+ <tr>
+  <td>
+      <!--  style="background:@item.Background; overflow:hidden;"  -->
+   <div class="ui-widget-header ui-state-default"    
+        style="padding-left:3Px;"   
+        title="@item.Id"
+        onclick="javascript:toggleChild('@item.Id')">@item.Title</div>
+   <div id="@item.Id" style="display:none; width:95%; background:#ffffff; padding-left:2Px;">
+    <div>
+     <b><a href="@item.Link" target="_blank">@item.Title</a></b>
+     <br/>
+       @Html.Raw(item.Description)
+    </div>
+    <span style="font-size:9Px; background:@item.Background;"> 
+       @Html.DisplayFor(modelItem => item.PubDate)<br />
+       @Html.DisplayFor(modelItem => item.Author)
+    </span>
+   </div>
+  </td>
+ </tr>
+}
+</table>

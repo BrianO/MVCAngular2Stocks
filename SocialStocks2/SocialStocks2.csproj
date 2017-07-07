@@ -209,6 +209,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="app\components\app.component.stockrem.html" />
     <Content Include="app\components\app.stockdetail.html" />
+    <Content Include="Areas\MVC\Views\Feeds\FeedList.cshtml" />
+    <Content Include="Areas\MVC\Views\Feeds\MyFeeds.cshtml" />
+    <Content Include="Areas\MVC\Views\Feeds\RSSItems.cshtml" />
+    <Content Include="Areas\MVC\Views\Home\Customers.cshtml" />
     <None Include="Properties\PublishProfiles\CustomConfiDiscountASP.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -287,10 +291,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\MVC\Controllers\FeedsController.cs" />
     <Compile Include="Areas\MVC\Controllers\HomeController.cs" />
     <Compile Include="Areas\MVC\Controllers\StocksController.cs" />
     <Compile Include="Areas\MVC\Models\Customer.cs" />
     <Compile Include="Areas\MVC\Models\Feed.cs" />
+    <Compile Include="Areas\MVC\Models\FeedSession.cs" />
     <Compile Include="Areas\MVC\Models\Quote.cs" />
     <Compile Include="Areas\MVC\Models\RSSItem.cs" />
     <Compile Include="Areas\MVC\Models\Stock.cs" />
