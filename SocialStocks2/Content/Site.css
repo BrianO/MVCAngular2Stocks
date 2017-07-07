@@ -50,3 +50,31 @@ input[type="checkbox"].input-validation-error {
     color:green
 
 }
+
+
+.loading
+     {     
+         position:absolute;
+         background:#0000cc;
+         filter: alpha(opacity=50); 
+         opacity:0.5; 
+         z-index:20; 
+         left:0Px; 
+         top:0Px; 
+         height:100%; 
+         width:100%; 
+         vertical-align:middle; 
+         text-align:center;
+     }
+      
+ .rssItem 
+     {
+          border:2Px Outset #cccccc; 
+          font-weight:bold;
+          margin-top:2Px; 
+          padding-top:2Px; 
+          margin-bottom:2Px;
+          padding-bottom:2Px;  
+          height:20Px; 
+          width:98%
+     }

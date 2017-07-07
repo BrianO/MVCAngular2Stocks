@@ -9,9 +9,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>My Feeds</title>
 
-     @Styles.Render("~/Content/css")          
-     @Styles.Render("~/Content/themes/base/css")     
-       
+     @Styles.Render("~/Content/css")             
      @Scripts.Render("~/bundles/jquery")
      @Scripts.Render("~/bundles/jquery-ui")
      
@@ -160,7 +158,7 @@
   </table>
   <div id="myFeeds" style="width:280Px; float:left; background:#eeeeee; overflow-y:scroll; margin-left:0Px; padding-bottom:4px;">
       @{
-         Html.RenderPartial("FeedList", (ViewData["CurrentUser"] as WebUser).Feeds);
+         Html.RenderPartial("FeedList", (ViewData["CurrentUser"] as SocialStocks2.Models.WebUser).Feeds);
       }
   </div> 
   <div id="myResizer" 

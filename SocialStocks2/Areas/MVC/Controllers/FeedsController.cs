@@ -9,7 +9,7 @@ using SocialStocks2;
 using SocialStocks2.Models;
 using System.Xml.Linq;
 
-namespace CustomConfigBuilderMvc.Controllers
+namespace SocialStocks2.Areas.MVC.Controllers
 {
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class FeedsController : Controller
