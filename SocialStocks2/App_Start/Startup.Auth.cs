@@ -77,8 +77,8 @@ namespace SocialStocks2
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "446847898924.project.googleusercontent.com",
-                ClientSecret = "cXRajHg7x5Dim3DfEd4aezJi",
+                ClientId = "446847898924-seto2pctf83vpoao9euvkcnussdetfle.apps.googleusercontent.com",
+                ClientSecret = "3ki1dBZ5bE0wMVmI7w_muwdM",
                 Provider = new GoogleOAuth2AuthenticationProvider()
             });
 
