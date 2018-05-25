@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var stock_1 = require("./stock");
 var app_service_stocks_1 = require("../services/app.service.stocks");
-var AppStocks = (function () {
+var AppStocks = /** @class */ (function () {
     function AppStocks(_appService) {
         this._appService = _appService;
         this.name = 'Angular Stocks';
@@ -52,15 +53,15 @@ var AppStocks = (function () {
             _this.getNextQuote();
         });
     };
+    AppStocks = __decorate([
+        core_1.Component({
+            selector: 'stocks',
+            templateUrl: './app/components/app.component.stocks.html',
+            providers: [app_service_stocks_1.AppServiceStocks]
+        }),
+        __metadata("design:paramtypes", [app_service_stocks_1.AppServiceStocks])
+    ], AppStocks);
     return AppStocks;
 }());
-AppStocks = __decorate([
-    core_1.Component({
-        selector: 'stocks',
-        templateUrl: './app/components/app.component.stocks.html',
-        providers: [app_service_stocks_1.AppServiceStocks]
-    }),
-    __metadata("design:paramtypes", [app_service_stocks_1.AppServiceStocks])
-], AppStocks);
 exports.AppStocks = AppStocks;
 //# sourceMappingURL=app.component.stocks.js.map

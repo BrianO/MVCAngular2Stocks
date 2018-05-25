@@ -1,5 +1,6 @@
 "use strict";
-var tweetUser = (function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var tweetUser = /** @class */ (function () {
     function tweetUser() {
     }
     return tweetUser;

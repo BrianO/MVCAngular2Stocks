@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_service_stocks_1 = require("../services/app.service.stocks");
-var TweetComponent = (function () {
+var TweetComponent = /** @class */ (function () {
     function TweetComponent(route, _appService, router) {
         this.route = route;
         this._appService = _appService;
@@ -30,16 +31,16 @@ var TweetComponent = (function () {
             .switchMap(function (params) { return _this._appService.stockTweets(params["id"]); })
             .subscribe(function (r) { _this.tweets = r; });
     };
+    TweetComponent = __decorate([
+        core_1.Component({
+            templateUrl: './app/components/app.stocktweets.html?v=1',
+            providers: [app_service_stocks_1.AppServiceStocks]
+        }),
+        __metadata("design:paramtypes", [router_1.ActivatedRoute,
+            app_service_stocks_1.AppServiceStocks,
+            router_1.Router])
+    ], TweetComponent);
     return TweetComponent;
 }());
-TweetComponent = __decorate([
-    core_1.Component({
-        templateUrl: './app/components/app.stocktweets.html?v=1',
-        providers: [app_service_stocks_1.AppServiceStocks]
-    }),
-    __metadata("design:paramtypes", [router_1.ActivatedRoute,
-        app_service_stocks_1.AppServiceStocks,
-        router_1.Router])
-], TweetComponent);
 exports.TweetComponent = TweetComponent;
 //# sourceMappingURL=app.stocktweets.js.map

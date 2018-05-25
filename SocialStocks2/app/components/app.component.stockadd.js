@@ -8,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var stock_1 = require("./stock");
 var app_service_stocks_1 = require("../services/app.service.stocks");
-var AddComponent = (function () {
+var AddComponent = /** @class */ (function () {
     function AddComponent(_appService, router) {
         this._appService = _appService;
         this.router = router;
@@ -65,15 +66,15 @@ var AddComponent = (function () {
             _this.router.navigate(['/']);
         });
     };
+    AddComponent = __decorate([
+        core_1.Component({
+            templateUrl: './app/components/app.component.stockadd.html?v=2',
+            providers: [app_service_stocks_1.AppServiceStocks]
+        }),
+        __metadata("design:paramtypes", [app_service_stocks_1.AppServiceStocks,
+            router_1.Router])
+    ], AddComponent);
     return AddComponent;
 }());
-AddComponent = __decorate([
-    core_1.Component({
-        templateUrl: './app/components/app.component.stockadd.html?v=2',
-        providers: [app_service_stocks_1.AppServiceStocks]
-    }),
-    __metadata("design:paramtypes", [app_service_stocks_1.AppServiceStocks,
-        router_1.Router])
-], AddComponent);
 exports.AddComponent = AddComponent;
 //# sourceMappingURL=app.component.stockadd.js.map

@@ -1,5 +1,6 @@
 "use strict";
-var rssitem = (function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var rssitem = /** @class */ (function () {
     function rssitem() {
     }
     return rssitem;

@@ -5,10 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 require("rxjs/add/observable/of");
 var core_1 = require("@angular/core");
 var Observable_1 = require("rxjs/Observable");
-var SelectivePreloadingStrategy = (function () {
+var SelectivePreloadingStrategy = /** @class */ (function () {
     function SelectivePreloadingStrategy() {
         this.preloadedModules = [];
     }
@@ -24,11 +25,11 @@ var SelectivePreloadingStrategy = (function () {
             return Observable_1.Observable.of(null);
         }
     };
+    SelectivePreloadingStrategy = __decorate([
+        core_1.Injectable()
+    ], SelectivePreloadingStrategy);
     return SelectivePreloadingStrategy;
 }());
-SelectivePreloadingStrategy = __decorate([
-    core_1.Injectable()
-], SelectivePreloadingStrategy);
 exports.SelectivePreloadingStrategy = SelectivePreloadingStrategy;
 /*
 Copyright 2017 Google Inc. All Rights Reserved.

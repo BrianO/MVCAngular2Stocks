@@ -8,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var stock_1 = require("./stock");
 var app_service_stocks_1 = require("../services/app.service.stocks");
-var RemComponent = (function () {
+var RemComponent = /** @class */ (function () {
     function RemComponent(route, _appService, router) {
         this.route = route;
         this._appService = _appService;
@@ -41,16 +42,16 @@ var RemComponent = (function () {
             _this.router.navigate(['/']);
         });
     };
+    RemComponent = __decorate([
+        core_1.Component({
+            templateUrl: './app/components/app.component.stockrem.html?v=21',
+            providers: [app_service_stocks_1.AppServiceStocks]
+        }),
+        __metadata("design:paramtypes", [router_1.ActivatedRoute,
+            app_service_stocks_1.AppServiceStocks,
+            router_1.Router])
+    ], RemComponent);
     return RemComponent;
 }());
-RemComponent = __decorate([
-    core_1.Component({
-        templateUrl: './app/components/app.component.stockrem.html?v=21',
-        providers: [app_service_stocks_1.AppServiceStocks]
-    }),
-    __metadata("design:paramtypes", [router_1.ActivatedRoute,
-        app_service_stocks_1.AppServiceStocks,
-        router_1.Router])
-], RemComponent);
 exports.RemComponent = RemComponent;
 //# sourceMappingURL=app.component.stockrem.js.map

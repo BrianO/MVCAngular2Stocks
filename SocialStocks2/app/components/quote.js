@@ -1,5 +1,6 @@
 "use strict";
-var quote = (function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var quote = /** @class */ (function () {
     function quote() {
     }
     return quote;
