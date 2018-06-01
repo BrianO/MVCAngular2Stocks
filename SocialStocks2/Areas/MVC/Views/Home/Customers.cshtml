@@ -1,15 +1,15 @@
-﻿@model IEnumerable<SocialStocks2.Models.Customer>
+﻿@model IEnumerable<SocialStocks2.Models.BCustomer>
 
 <table class="table table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.NAME)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayNameFor(model => model.ADDRESS)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
+            @Html.DisplayNameFor(model => model.PHONE)
         </th>
         <th></th>
     </tr>
@@ -18,14 +18,14 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.NAME)
             </td>
             <td style ="color:blue; text-decoration:underline; cursor:pointer;" 
-                onclick="selectCustomer('@item.Address')">
-                @Html.DisplayFor(modelItem => item.Address)
+                onclick="selectCustomer('@item.ADDRESS')">
+                @Html.DisplayFor(modelItem => item.ADDRESS)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Phone)
+                @Html.DisplayFor(modelItem => item.PHONE)
             </td>
             <td></td>
         </tr>

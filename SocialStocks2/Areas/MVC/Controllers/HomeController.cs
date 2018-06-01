@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using SocialStocks2.Models;
- 
+using MongoDB.Driver;
+
 namespace SocialStocks2.Areas.MVC.Controllers
 {
     public class HomeController : Controller
@@ -27,9 +28,14 @@ namespace SocialStocks2.Areas.MVC.Controllers
         {
             ViewBag.Message = "Page with Bing Maps.";
 
-            Data d = new Data();
+            var mongoContext = new mongoCloud();
 
-            ViewBag.Customers = d.GetCustomers();
+            var allCustomers = mongoContext.Customers.Find(x => true).ToList();
+
+            //Data d = new Data();
+
+            ViewBag.Customers = allCustomers;
+            //d.GetCustomers();
 
             return View();
         }
@@ -52,11 +58,24 @@ namespace SocialStocks2.Areas.MVC.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult AddCustomer(string CustomerName, string CustomerAddress, string CustomerPhone)
         {
-            Data d = new Data();
+            var mongoContext = new mongoCloud();
 
-            d.AddCustomer(CustomerName, CustomerAddress, CustomerPhone);
 
-            return Json(new { Data = RenderRazorViewToString("Customers", d.GetCustomers()) });
+            //Data d = new Data();
+
+            //d.AddCustomer(CustomerName, CustomerAddress, CustomerPhone);
+
+            var customer = new BCustomer
+            {
+                NAME = CustomerName,
+                ADDRESS = CustomerAddress,
+                PHONE = CustomerPhone
+            };
+
+            mongoContext.Customers.InsertOne(customer);
+
+            return Json(new { Data = RenderRazorViewToString("Customers",
+                mongoContext.Customers.Find(x => true).ToList()) });
 
         }
 

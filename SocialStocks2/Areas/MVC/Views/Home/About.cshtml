@@ -3,7 +3,7 @@
 }
 
 @section Scripts {
-    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 
     <!-- 
         <script type="text/javascript" 
@@ -27,44 +27,47 @@
     </p>
 </div>
 
-@{ using (Ajax.BeginForm("AddCustomer", "Home",
-                                                              new AjaxOptions()
-                                                              {
-                                                                  HttpMethod = "Post",
-                                                                  OnSuccess = "AddComplete",
-                                                                  OnFailure = "AddFail"
-                                                              }))
+<h2>Customers - Powered by MongoDB! :</h2>
+
+@{ using (Ajax.BeginForm("AddCustomer", 
+                         "Home", 
+                         new AjaxOptions() {
+                             HttpMethod = "Post",
+                             OnSuccess = "AddComplete",
+                             OnFailure = "AddFail" }))
     {
 
-        <h4>Add Customer:</h4>
-        <div class="form-group">
-            @Html.Label("Name", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBox("CustomerName", "", new { @class = "form-control" })
-            </div>
+<div class="row" style="background:#f9f9f9; margin-bottom:12px; border:1px solid #ddd; padding: 12px;">
+    <h4>Add Customer:</h4>
+    <div class="form-group" style="background:#f9f9f9;">
+        @Html.Label("Name", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBox("CustomerName", "", new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.Label("Address", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBox("CustomerAddress", "", new { size = 50, maxlength = 80, @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group" style="background:#f9f9f9;">
+        @Html.Label("Address", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBox("CustomerAddress", "", new { size = 50, maxlength = 80, @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.Label("Phone", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBox("CustomerPhone", "", new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group" style="background:#f9f9f9;">
+        @Html.Label("Phone", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBox("CustomerPhone", "", new { @class = "form-control" })
         </div>
-        <center>
-            <input type="submit" value="Add" class="btn-primary" />
-        </center>
+    </div>
+    <center>
+        <input type="submit" value="Add" class="btn-primary" />
+    </center>
+</div>
     }
 }
 
-<h4>Customers:</h4>
+
 <div id="CustDiv" class="row">
     @{
-        Html.RenderPartial("Customers", ViewBag.Customers as List<SocialStocks2.Models.Customer>);
+        Html.RenderPartial("Customers", ViewBag.Customers as List<SocialStocks2.Models.BCustomer>);
     }
 </div>
 
