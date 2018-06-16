@@ -349,7 +349,8 @@ namespace SocialStocks2.Areas.MVC.Controllers
                         feedSession.RSSItems.Add(
                             new RSSItem()
                             {
-                                Id = item.Id==null?Guid.NewGuid().ToString():item.Id,
+                                //   Id = item.Id==null?Guid.NewGuid().ToString():item.Id,
+                                Id = Guid.NewGuid().ToString(),
                                 Link = item.Links[0].Uri.AbsoluteUri,
                                 Description = item.Summary==null?"":item.Summary.Text,
                                 Title = item.Title.Text,
@@ -363,9 +364,9 @@ namespace SocialStocks2.Areas.MVC.Controllers
                         cleanUpScriptsEmbedded(feedSession.RSSItems[feedSession.RSSItems.Count - 1]);
 
                         // Clean up Denningers Ids
-                        string tempId = feedSession.RSSItems[feedSession.RSSItems.Count - 1].Id;
-                        tempId = tempId.Replace("/", "").Replace("=", "").Replace(":", "").Replace("?", "");
-                        feedSession.RSSItems[feedSession.RSSItems.Count - 1].Id = tempId;
+                        //string tempId = feedSession.RSSItems[feedSession.RSSItems.Count - 1].Id;
+                        //tempId = tempId.Replace("/", "").Replace("=", "").Replace(":", "").Replace("?", "");
+                        //feedSession.RSSItems[feedSession.RSSItems.Count - 1].Id = tempId;
                     }
                 }
                 reader.Close();
