@@ -55,9 +55,9 @@ input[type="checkbox"].input-validation-error {
 .loading
      {     
          position:absolute;
-         background:#0000cc;
-         filter: alpha(opacity=50); 
-         opacity:0.5; 
+         background:#ffffff;
+         filter: alpha(opacity=75); 
+         opacity:0.75; 
          z-index:20; 
          left:0Px; 
          top:0Px; 

@@ -5,9 +5,9 @@ using System.IO;
 using System.Web.Mvc;
 using System.ServiceModel.Syndication;
 using System.Xml;
-using SocialStocks2;
 using SocialStocks2.Models;
 using System.Xml.Linq;
+using System.Net;
 
 namespace SocialStocks2.Areas.MVC.Controllers
 {
@@ -293,6 +293,12 @@ namespace SocialStocks2.Areas.MVC.Controllers
 
             try
             {
+                ServicePointManager.SecurityProtocol = 
+                              SecurityProtocolType.Tls
+                            | SecurityProtocolType.Tls11
+                            | SecurityProtocolType.Tls12
+                            | SecurityProtocolType.Ssl3;
+
                 var req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(Link);
                 req.Method = "GET";
                 req.UseDefaultCredentials = true;
@@ -414,12 +420,16 @@ namespace SocialStocks2.Areas.MVC.Controllers
                 }
             }
 
-            return Json(
+            JsonResult result = Json(
               new
               {
                   Data = jsonResponse
-              }, 
+              },
               JsonRequestBehavior.AllowGet);
+
+            result.MaxJsonLength = int.MaxValue;
+
+            return result;
         }
 
         private void cleanUpScriptsEmbedded(RSSItem item)
